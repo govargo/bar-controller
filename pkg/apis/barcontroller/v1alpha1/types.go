@@ -18,8 +18,8 @@ type Bar struct {
 
 // BarSpec is the spec for a Bar resource
 type BarSpec struct {
-	FooName string `json:"fooName"`
-	Replicas       *int32 `json:"replicas"`
+	FooName  string `json:"fooName"`
+	Replicas *int32 `json:"replicas"`
 }
 
 // BarStatus is the status for a Bar resource
