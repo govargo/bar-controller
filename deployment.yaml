@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bar-controller
+  labels:
+    app: bar-controller
+spec:
+  selector:
+    matchLabels:
+      app: bar-controller
+  template:
+    metadata:
+      labels:
+        app: bar-controller
+    spec:
+      serviceAccountName: bar-controller
+      containers:
+      - name: bar-controller
+        image: govargo/bar-controller

@@ -1,0 +1,42 @@
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+  name: bar-controller
+rules:
+- apiGroups: 
+  - samplecontroller.k8s.io
+  resources: 
+  - foos
+  - bars
+  verbs:
+  - get
+  - list
+  - watch
+  - create
+  - update
+  - patch
+- apiGroups:
+  - ""
+  resources:
+  - events
+  verbs:
+  - create
+  - patch
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: bar-controller
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+  name: bar-controller
+subjects:
+- kind: ServiceAccount
+  name: bar-controller
+  namespace: default
+roleRef:
+  kind: ClusterRole
+  name: bar-controller
+  apiGroup: rbac.authorization.k8s.io
